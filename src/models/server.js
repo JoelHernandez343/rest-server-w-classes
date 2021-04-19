@@ -11,37 +11,12 @@ class Server {
   }
 
   routes() {
-    this.app.get('/api', (req, res) => {
-      res.json({
-        ok: true,
-        msg: 'get API',
-      });
-    });
-
-    this.app.put('/api', (req, res) => {
-      res.json({
-        ok: true,
-        msg: 'put API',
-      });
-    });
-
-    this.app.post('/api', (req, res) => {
-      res.json({
-        ok: true,
-        msg: 'post API',
-      });
-    });
-
-    this.app.delete('/api', (req, res) => {
-      res.json({
-        ok: true,
-        msg: 'delete API',
-      });
-    });
+    this.app.use('/api', require('../routes/api'));
   }
 
   middlewares() {
     this.app.use(cors());
+    this.app.use(express.json());
     this.app.use(express.static('public'));
   }
 

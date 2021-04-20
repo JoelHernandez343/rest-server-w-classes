@@ -1,16 +1,22 @@
-const { response } = require('express');
+const { response, request } = require('express');
 
-const apiGet = (req, res = response) => {
+const apiGet = (req = request, res = response) => {
+  const { name = 'No name', apiKey } = req.query;
+
   res.json({
     ok: true,
-    msg: 'get API',
+    name,
+    apiKey,
   });
 };
 
 const apiPut = (req, res = response) => {
+  const id = req.params.id;
+
   res.json({
     ok: true,
     msg: 'put API',
+    id,
   });
 };
 

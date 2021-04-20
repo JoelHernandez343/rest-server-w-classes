@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const { apiGet, apiPut, apiPost, apiDelete } = require('../controllers/api');
+const { apiGet, apiPut, apiPost, apiDelete } = require('../controllers/users');
 
 const router = Router();
 
 router.get('/', apiGet);
 
-router.put('/', apiPut);
+router.put('/:id', apiPut);
 
 router.post('/', apiPost);
 

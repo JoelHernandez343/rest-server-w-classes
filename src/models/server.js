@@ -11,7 +11,7 @@ class Server {
   }
 
   routes() {
-    this.app.use('/api', require('../routes/api'));
+    this.app.use('/api/users', require('../routes/users'));
   }
 
   middlewares() {

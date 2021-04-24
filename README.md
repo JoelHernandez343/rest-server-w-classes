@@ -3,7 +3,7 @@ This is a simple expresjs server as REST server.
 
 I used a class-based architecture for the app. (Just trying something out).
 
-## Uso
+## Use
 Install the packages:
 ```
 npm i

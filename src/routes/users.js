@@ -2,9 +2,9 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { apiGet, apiPut, apiPost, apiDelete } = require('../controllers/users');
-const { validateFields } = require('../middlewares/validate-fields');
 
-const Role = require('../models/role');
+const { isRoleValid, emailExits } = require('../db/validators');
+const { validateFields } = require('../middlewares/validate-fields');
 
 const router = Router();
 
@@ -20,13 +20,8 @@ router.post(
       min: 6,
     }),
     check('email', 'The email is not valid.').isEmail(),
-    check('role').custom(async (role = '') => {
-      const exists = await Role.findOne({ role });
-
-      if (!exists) {
-        throw new Error(`Role ${role} is not registered in BD`);
-      }
-    }),
+    check('email').custom(emailExits),
+    check('role').custom(isRoleValid),
     validateFields,
   ],
   apiPost

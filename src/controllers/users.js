@@ -27,12 +27,6 @@ const apiPost = async (req, res = response) => {
   const { name, email, password, role } = req.body;
   const user = new User({ name, email, password, role });
 
-  if (await User.findOne({ email })) {
-    return res.status(400).json({
-      message: 'That email is already registered.',
-    });
-  }
-
   const salt = bcryptjs.genSaltSync();
   user.password = bcryptjs.hashSync(password, salt);
 
